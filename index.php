@@ -2,8 +2,18 @@
 // Load content from JSON file
 $dataFile = __DIR__ . '/data/content.json';
 $content = [];
+
+// Create data directory if not exists
+if (!file_exists(__DIR__ . '/data')) {
+    @mkdir(__DIR__ . '/data', 0755, true);
+}
+
 if (file_exists($dataFile)) {
-    $content = json_decode(file_get_contents($dataFile), true);
+    $jsonContent = file_get_contents($dataFile);
+    $content = json_decode($jsonContent, true);
+    if ($content === null) {
+        $content = []; // Reset if JSON is invalid
+    }
 }
 ?>
 <!DOCTYPE html>
