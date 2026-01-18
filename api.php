@@ -1,8 +1,10 @@
 <?php
 // API for saving and loading content
 header('Content-Type: application/json; charset=utf-8');
+error_reporting(E_ALL);
 
-$dataFile = __DIR__ . '/data/content.json';
+$dataDir = __DIR__ . '/data';
+$dataFile = $dataDir . '/content.json';
 
 // Default content
 $defaultContent = [
@@ -38,13 +40,20 @@ $defaultContent = [
 ];
 
 // Create data directory if not exists
-if (!file_exists(__DIR__ . '/data')) {
-    mkdir(__DIR__ . '/data', 0755, true);
+if (!file_exists($dataDir)) {
+    @mkdir($dataDir, 0777, true);
 }
 
 // Create default content file if not exists
 if (!file_exists($dataFile)) {
-    file_put_contents($dataFile, json_encode($defaultContent, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+    @file_put_contents($dataFile, json_encode($defaultContent, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+    @chmod($dataFile, 0666);
+}
+
+// If file still doesn't exist, output default content directly
+if (!file_exists($dataFile)) {
+    echo json_encode($defaultContent, JSON_UNESCAPED_UNICODE);
+    exit;
 }
 
 // Handle requests
