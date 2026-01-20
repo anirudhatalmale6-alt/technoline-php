@@ -605,6 +605,362 @@ if (file_exists($dataFile)) {
                 font-size: 2rem;
             }
         }
+
+        /* ==================== ANIMATIONS ==================== */
+
+        /* Keyframes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(79, 179, 217, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(79, 179, 217, 0.6); }
+        }
+
+        @keyframes slideInFromRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes rotateIn {
+            from {
+                opacity: 0;
+                transform: rotate(-10deg) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: rotate(0) scale(1);
+            }
+        }
+
+        @keyframes waveBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            60% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+
+        /* Hero Animations */
+        .hero {
+            background: linear-gradient(-45deg, #1e3a5f, #2d5a87, #4fb3d9, #1e3a5f);
+            background-size: 400% 400%;
+            animation: waveBackground 15s ease infinite;
+        }
+
+        .hero-badge {
+            animation: bounceIn 0.8s ease-out, pulse 2s ease-in-out infinite;
+        }
+
+        .hero h1 {
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .hero p {
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        .cta-button {
+            animation: fadeInUp 1s ease-out 0.7s both, glow 2s ease-in-out infinite;
+        }
+
+        .cta-button:hover {
+            animation: pulse 0.3s ease-out;
+        }
+
+        /* Floating particles in hero */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 10%;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.03);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero .hero-content::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -100px;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(79, 179, 217, 0.1);
+            animation: float 8s ease-in-out infinite reverse;
+            z-index: -1;
+        }
+
+        /* Scroll Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .animate-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease-out;
+        }
+
+        .animate-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .animate-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        .animate-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Feature cards animation */
+        .feature-card {
+            transition: all 0.4s ease-out;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(30,58,95,0.2);
+        }
+
+        .feature-card:hover .feature-icon {
+            animation: bounceIn 0.5s ease-out;
+        }
+
+        .feature-icon {
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* Product cards animation */
+        .product-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(79, 179, 217, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .product-card:hover::before {
+            left: 100%;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        .product-card li {
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover li {
+            transform: translateX(5px);
+        }
+
+        /* Contact form animations */
+        .form-group input:focus,
+        .form-group textarea:focus {
+            transform: scale(1.02);
+            box-shadow: 0 5px 20px rgba(79, 179, 217, 0.2);
+        }
+
+        .submit-btn {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .submit-btn:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Section title animation */
+        .section-title {
+            position: relative;
+        }
+
+        .section-title::after {
+            transition: width 0.5s ease;
+            width: 0;
+        }
+
+        .section-title.visible::after {
+            width: 80px;
+        }
+
+        /* Contact items animation */
+        .contact-item {
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateX(-10px);
+        }
+
+        .contact-item:hover .contact-icon {
+            animation: pulse 0.5s ease;
+        }
+
+        /* API features tags animation */
+        .api-feature {
+            transition: all 0.3s ease;
+        }
+
+        .api-feature:hover {
+            transform: scale(1.1);
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* Code block animation */
+        .code-block {
+            transition: all 0.3s ease;
+        }
+
+        .code-block:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Navigation animation on scroll */
+        nav {
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(255,255,255,0.98);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        /* Footer animation */
+        footer {
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(79, 179, 217, 0.05) 0%, transparent 70%);
+            animation: float 10s ease-in-out infinite;
+        }
+
+        .footer-logo {
+            transition: all 0.3s ease;
+        }
+
+        .footer-logo:hover {
+            transform: scale(1.1);
+        }
+
+        /* Stagger animation delays for children */
+        .features .feature-card:nth-child(1) { transition-delay: 0.1s; }
+        .features .feature-card:nth-child(2) { transition-delay: 0.2s; }
+        .features .feature-card:nth-child(3) { transition-delay: 0.3s; }
+
+        .products-grid .product-card:nth-child(1) { transition-delay: 0.1s; }
+        .products-grid .product-card:nth-child(2) { transition-delay: 0.2s; }
+        .products-grid .product-card:nth-child(3) { transition-delay: 0.3s; }
+        .products-grid .product-card:nth-child(4) { transition-delay: 0.4s; }
+
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
     </style>
 </head>
 <body>
@@ -645,35 +1001,35 @@ if (file_exists($dataFile)) {
     <!-- About Section -->
     <section id="about" class="section">
         <div class="container">
-            <h2 class="section-title">אודות החברה</h2>
+            <h2 class="section-title animate-on-scroll">אודות החברה</h2>
             <div class="about-content">
-                <div class="about-text">
+                <div class="about-text animate-left">
                     <h3><?= htmlspecialchars($content['about']['title'] ?? 'טכנוליין - הקול בידיים שלך') ?></h3>
                     <p><?= htmlspecialchars($content['about']['paragraphs'][0] ?? 'אנחנו מתמחים בפיתוח פתרונות טכנולוגיים מתקדמים לניהול קווי תוכן ומסרים קוליים.') ?></p>
                     <p><?= htmlspecialchars($content['about']['paragraphs'][1] ?? 'המערכת שלנו מאפשרת לארגונים, עמותות ועסקים להעביר מסרים בצורה ישירה ויעילה לקהל היעד שלהם.') ?></p>
                     <p><?= htmlspecialchars($content['about']['paragraphs'][2] ?? 'עם שנים של ניסיון בתחום, אנחנו מציעים פתרון אמין, מהיר ופשוט לתפעול.') ?></p>
                 </div>
-                <div class="about-image">
+                <div class="about-image animate-right">
                     <img src="images/logo.jpg" alt="טכנוליין">
                 </div>
             </div>
 
             <div class="features">
-                <div class="feature-card">
+                <div class="feature-card animate-on-scroll">
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
                     </div>
                     <h4>פשוט לתפעול</h4>
                     <p>ממשק ידידותי ונוח שמאפשר ניהול מלא של המערכת בקלות</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card animate-on-scroll">
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24"><path d="M13 2.05v2.02c3.95.49 7 3.85 7 7.93 0 3.21-1.92 6-4.72 7.28L13 17v5l5-5h-2.28c2.52-1.48 4.28-4.15 4.28-7.28 0-5.17-4.36-9.32-9.5-9.67zm-2 0C6.05 2.56 2 6.94 2 12c0 4.07 2.58 7.54 6.22 8.87L10 17v5l-5-5h2.28C4.58 15.54 3 13.27 3 10.72c0-4.41 3.58-8 8-8v-.67z"/></svg>
                     </div>
                     <h4>מהיר ואמין</h4>
                     <p>הפצת מסרים מיידית עם אמינות מקסימלית ודיווחים בזמן אמת</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card animate-on-scroll">
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
                     </div>
@@ -687,9 +1043,9 @@ if (file_exists($dataFile)) {
     <!-- Products Section -->
     <section id="products" class="section">
         <div class="container">
-            <h2 class="section-title">המוצרים שלנו</h2>
+            <h2 class="section-title animate-on-scroll">המוצרים שלנו</h2>
             <div class="products-grid">
-                <div class="product-card">
+                <div class="product-card animate-on-scroll">
                     <h3>מערכת הודעות קוליות</h3>
                     <p>שליחת הודעות קוליות אוטומטיות לרשימות תפוצה</p>
                     <ul>
@@ -699,7 +1055,7 @@ if (file_exists($dataFile)) {
                         <li>ניהול רשימות תפוצה</li>
                     </ul>
                 </div>
-                <div class="product-card">
+                <div class="product-card animate-on-scroll">
                     <h3>קווי מידע אוטומטיים</h3>
                     <p>הקמה וניהול של קווי מידע עם תפריטים קוליים</p>
                     <ul>
@@ -709,7 +1065,7 @@ if (file_exists($dataFile)) {
                         <li>הקלטת שיחות</li>
                     </ul>
                 </div>
-                <div class="product-card">
+                <div class="product-card animate-on-scroll">
                     <h3>ניהול שיחות נכנסות</h3>
                     <p>מערכת מתקדמת לניהול שיחות נכנסות וניתובן</p>
                     <ul>
@@ -719,7 +1075,7 @@ if (file_exists($dataFile)) {
                         <li>אינטגרציה עם CRM</li>
                     </ul>
                 </div>
-                <div class="product-card">
+                <div class="product-card animate-on-scroll">
                     <h3>API למפתחים</h3>
                     <p>ממשק תכנות לשילוב המערכת באפליקציות חיצוניות</p>
                     <ul>
@@ -736,9 +1092,9 @@ if (file_exists($dataFile)) {
     <!-- Developers Section -->
     <section id="developers" class="section">
         <div class="container">
-            <h2 class="section-title">למפתחים</h2>
+            <h2 class="section-title animate-on-scroll">למפתחים</h2>
             <div class="api-info">
-                <div class="api-text">
+                <div class="api-text animate-left">
                     <p>ה-API שלנו מאפשר לכם לשלב את יכולות המערכת הקולית באפליקציות שלכם בקלות.</p>
                     <p>תיעוד מקיף, דוגמאות קוד בשפות שונות, וצוות תמיכה שזמין לעזור.</p>
                     <div class="api-features">
@@ -749,7 +1105,7 @@ if (file_exists($dataFile)) {
                         <span class="api-feature">סביבת בדיקות</span>
                     </div>
                 </div>
-                <div class="code-block">
+                <div class="code-block animate-right">
                     <pre>
 // דוגמה לשליחת הודעה קולית
 const technoline = require('technoline-sdk');
@@ -772,9 +1128,9 @@ await client.voice.send({
     <!-- Contact Section -->
     <section id="contact" class="section">
         <div class="container">
-            <h2 class="section-title">יצירת קשר</h2>
+            <h2 class="section-title animate-on-scroll">יצירת קשר</h2>
             <div class="contact-grid">
-                <div class="contact-form">
+                <div class="contact-form animate-left">
                     <form>
                         <div class="form-group">
                             <label>שם מלא</label>
@@ -795,7 +1151,7 @@ await client.voice.send({
                         <button type="submit" class="submit-btn">שלח הודעה</button>
                     </form>
                 </div>
-                <div class="contact-info">
+                <div class="contact-info animate-right">
                     <h3>נשמח לשמוע ממך</h3>
                     <p>השאר פרטים ונחזור אליך בהקדם, או צור קשר ישירות באחת הדרכים הבאות:</p>
                     <div class="contact-item">
@@ -884,6 +1240,87 @@ await client.voice.send({
         });
 
         // Content is loaded via PHP - no JavaScript API needed
+
+        // Scroll animations using IntersectionObserver
+        const animateOnScroll = () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            // Observe all elements with animation classes
+            document.querySelectorAll('.animate-on-scroll, .animate-left, .animate-right, .section-title').forEach(el => {
+                observer.observe(el);
+            });
+        };
+
+        // Navigation scroll effect
+        const navScrollEffect = () => {
+            const nav = document.querySelector('nav');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            });
+        };
+
+        // Parallax effect for hero
+        const parallaxEffect = () => {
+            const hero = document.querySelector('.hero');
+            const heroContent = document.querySelector('.hero-content');
+
+            window.addEventListener('scroll', () => {
+                const scrolled = window.scrollY;
+                if (scrolled < window.innerHeight) {
+                    heroContent.style.transform = `translateY(${scrolled * 0.3}px)`;
+                    heroContent.style.opacity = 1 - (scrolled * 0.002);
+                }
+            });
+        };
+
+        // Counter animation for stats (if added later)
+        const animateCounter = (element, target, duration = 2000) => {
+            let start = 0;
+            const increment = target / (duration / 16);
+            const timer = setInterval(() => {
+                start += increment;
+                if (start >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(start);
+                }
+            }, 16);
+        };
+
+        // Typing effect for hero title (optional enhancement)
+        const typeWriter = (element, text, speed = 50) => {
+            let i = 0;
+            element.textContent = '';
+            const type = () => {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            };
+            type();
+        };
+
+        // Initialize all animations
+        document.addEventListener('DOMContentLoaded', () => {
+            animateOnScroll();
+            navScrollEffect();
+            parallaxEffect();
+        });
     </script>
 </body>
 </html>
